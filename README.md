@@ -47,3 +47,41 @@ Full-featured restaurant order tracking system developed with **Java Spring Boot
 1. **Projeyi klonlayın / Clone the repository**  
 ```bash
 git clone https://github.com/kullaniciadi/restaurant-order-tracking-system.git
+```
+
+2. **Backend için Maven bağımlılıklarını yükleyin / Install Maven dependencies**
+```bash
+cd restaurant-order-tracking-system
+mvn clean install
+```
+
+3. **MySQL veritabanını oluşturun / Create MySQL database**
+ -Database adı: restoran_vt
+
+ -SQL dosyasındaki tabloları ve başlangıç verilerini çalıştırın.
+
+4. **application.properties dosyasını güncelleyin / Configure DB connection**
+ ```bash
+spring.datasource.url=jdbc:mysql://localhost:3306/restoran_vt
+spring.datasource.username=root
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+```
+5. **Backend’i çalıştırın / Run Spring Boot application
+ ```bash
+mvn spring-boot:run
+```
+6. Frontend’i açın / Open frontend
+-index.html, garson.html, mutfak.html dosyalarını tarayıcıda açabilirsiniz.
+-Backend API’leri ile tam entegre çalışacaktır.
+
+
+## Kullanım / Usage
+
+-Müşteri panelinden menüyü görebilir ve sipariş verebilir.
+
+-Garson panelinden masaları ve siparişleri yönetebilir.
+
+-Mutfak panelinden siparişlerin hazırlık durumunu güncelleyebilir.
+
+-Ödeme ve sipariş geçmişi yönetimi backend üzerinden takip edilir.
