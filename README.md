@@ -85,3 +85,16 @@ mvn spring-boot:run
 -Mutfak panelinden siparişlerin hazırlık durumunu güncelleyebilir.
 
 -Ödeme ve sipariş geçmişi yönetimi backend üzerinden takip edilir.
+
+
+<img width="1883" height="975" alt="Ekran görüntüsü 2025-09-10 225852" src="https://github.com/user-attachments/assets/da298bda-de2e-454b-911e-648c43133496" />
+<img width="1878" height="950" alt="Ekran görüntüsü 2025-09-10 225906" src="https://github.com/user-attachments/assets/07bdc99c-c27b-432c-9fde-45939924e620" />
+<img width="1634" height="853" alt="Ekran görüntüsü 2025-09-10 230010" src="https://github.com/user-attachments/assets/54c70a75-e9ae-4bf7-a3bf-d82cb3d96e85" />
+<img width="1321" height="650" alt="Ekran görüntüsü 2025-09-10 230027" src="https://github.com/user-attachments/assets/17902ecd-1dd5-411e-8347-63d06978d5d2" />
+<img width="1649" height="901" alt="Ekran görüntüsü 2025-09-10 230041" src="https://github.com/user-attachments/assets/10ca2f2b-0226-4dd4-b1e9-ef5b4ffdefda" />
+<img width="1284" height="600" alt="Ekran görüntüsü 2025-09-10 230331" src="https://github.com/user-attachments/assets/8860bb14-531a-45c8-a431-a38276931d64" />
+
+
+
+
+
