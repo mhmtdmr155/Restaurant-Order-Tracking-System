@@ -55,7 +55,8 @@ cd restaurant-order-tracking-system
 mvn clean install
 ```
 
-3. **MySQL veritabanını oluşturun / Create MySQL database**
+3. **MySQL veritabanını oluşturun / Create MySQL database
+
  -Database adı: restoran_vt
 
  -SQL dosyasındaki tabloları ve başlangıç verilerini çalıştırın.
@@ -72,6 +73,7 @@ spring.jpa.hibernate.ddl-auto=update
 mvn spring-boot:run
 ```
 6. **Frontend’i açın / Open frontend**
+   
 -index.html, garson.html, mutfak.html dosyalarını tarayıcıda açabilirsiniz.
 -Backend API’leri ile tam entegre çalışacaktır.
 
