@@ -67,11 +67,11 @@ spring.datasource.username=root
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 ```
-5. **Backend’i çalıştırın / Run Spring Boot application
+5. **Backend’i çalıştırın / Run Spring Boot application**
  ```bash
 mvn spring-boot:run
 ```
-6. Frontend’i açın / Open frontend
+6. **Frontend’i açın / Open frontend**
 -index.html, garson.html, mutfak.html dosyalarını tarayıcıda açabilirsiniz.
 -Backend API’leri ile tam entegre çalışacaktır.
 
