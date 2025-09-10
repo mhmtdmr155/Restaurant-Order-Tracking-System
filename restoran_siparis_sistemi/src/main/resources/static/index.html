@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran - Müşteri Paneli</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ek menü stilleri */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .menu-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .menu-item-info {
+            padding: 15px;
+            background: white;
+        }
+        
+        .menu-item h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        
+        .menu-item p {
+            margin: 0;
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--dark-color);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button.active {
+            border-bottom: 3px solid var(--secondary-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restoran Sipariş Takip</h1>
+        <nav>
+            <a href="index.html" class="active">Müşteri</a>
+            <a href="mutfak.html">Mutfak</a>
+            <a href="garson.html">Garson</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="menu">
+            <h2>Menümüz</h2>
+            
+            <div class="tab-buttons">
+                <button class="tab-button active" data-category="yemekler">Yemekler</button>
+                <button class="tab-button" data-category="icecekler">İçecekler</button>
+                <button class="tab-button" data-category="tatlilar">Tatlılar</button>
+            </div>
+            
+            <div class="menu-grid" id="menu-items">
+                
+            </div>
+        </section>
+
+        <section id="siparis-ver">
+            <h2>Sipariş Ver</h2>
+            <form id="siparis-formu">
+                <div class="form-group">
+                    <label for="kategori">Kategori:</label>
+                    <select id="kategori" required>
+                        <option value="">Seçiniz</option>
+                        <option value="yemek">Yemek</option>
+                        <option value="icecek">İçecek</option>
+                        <option value="tatli">Tatlı</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urun">Ürün:</label>
+                    <select id="urun" required disabled>
+                        <option value="">Önce kategori seçin</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adet">Adet:</label>
+                    <input type="number" id="adet" min="1" value="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="masa">Masa No:</label>
+                    <input type="number" id="masa" min="1" max="20" required>
+                </div>
+                
+                <button type="submit">Sipariş Gönder</button>
+            </form>
+        </section>
+
+        <section id="siparislerim">
+            <h2>Siparişlerim</h2>
+            <div id="siparis-listesi" class="siparis-listesi">
+                <!-- Siparişler buraya eklenecek -->
+            </div>
+        </section>
+    </main>
+
+    <script src="upp.js"></script>
+    <script src="customer.js"></script>
+    
+    <script>
+        // Menü verileri ve görseller
+        const menuItems = {
+            yemekler: [
+                { 
+                    id: 1, 
+                    name: "Köfte", 
+                    price: "85₺", 
+                    image: "images/köfte.jpeg",
+                    description: "El yapımı köftelerimiz"
+                },
+                { 
+                    id: 2, 
+                    name: "Tavuk Şiş", 
+                    price: "75₺", 
+                    image: "images/tavuk şiş.jpeg",
+                    description: "Marine edilmiş tavuk şiş"
+                },
+                { 
+                    id: 3, 
+                    name: "Lahmacun", 
+                    price: "30₺", 
+                    image: "images/lahmacun.jpeg",
+                    description: "İnce hamurlu lahmacun"
+                },
+                { 
+                    id: 4, 
+                    name: "Pide", 
+                    price: "60₺", 
+                    image: "images/pide.jpeg",
+                    description: "Çeşitli pide seçenekleri"
+                },
+            ],
+            icecekler: [
+                { 
+                    id: 6, 
+                    name: "Ayran", 
+                    price: "12₺", 
+                    image: "images/ayran.jpeg",
+                    description: "Ev yapımı ayran"
+                },
+                { 
+                    id: 7, 
+                    name: "Kola", 
+                    price: "15₺", 
+                    image: "images/kola.jpeg",
+                    description: "Soğuk kola"
+                },
+                { 
+                    id: 8, 
+                    name: "Şalgam", 
+                    price: "14₺", 
+                    image: "images/şalgam.jpeg",
+                    description: "Acılı/acişız şalgam"
+                },
+                { 
+                    id: 9, 
+                    name: "Ice tea", 
+                    price: "16₺", 
+                    image: "images/ice tea.jpeg",
+                    description: "Soğuk buzlu çay"
+                },
+                { 
+                    id: 10, 
+                    name: "Sade soda", 
+                    price: "10₺", 
+                    image: "images/sade soda.jpeg",
+                    description: "Doğal maden sodası"
+                }
+            ],
+            tatlilar: [
+                { 
+                    id: 11, 
+                    name: "Künefe", 
+                    price: "50₺", 
+                    image: "images/kunefe.jpeg",
+                    description: "Tepside künefe"
+                },
+                { 
+                    id: 12, 
+                    name: "Antep baklava", 
+                    price: "60₺", 
+                    image: "images/baklava.jpeg",
+                    description: "Gerçek Antep baklavası"
+                },
+                { 
+                    id: 13, 
+                    name: "San sebastian", 
+                    price: "55₺", 
+                    image: "images/san sebastian.jpeg",
+                    description: "Çikolatalı kek"
+                },
+                { 
+                    id: 14, 
+                    name: "Sütlaç", 
+                    price: "35₺", 
+                    image: "images/sütlaç.jpeg",
+                    description: "Ev yapımı sütlaç"
+                },
+                { 
+                    id: 15, 
+                    name: "Kazandibi", 
+                    price: "40₺", 
+                    image: "images/kazandibi.jpeg",
+                    description: "Kremalı kazandibi"
+                }
+            ]
+        };
+
+        // Tab butonları ve menü yükleme
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const menuItemsContainer = document.getElementById('menu-items');
+        
+        // İlk yüklemede yemekleri göster
+        loadMenuItems('yemekler');
+        
+        // Tab butonlarına tıklama eventi
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Tüm butonlardan active classını kaldır
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Tıklanana active classını ekle
+                button.classList.add('active');
+                // İlgili menüyü yükle
+                const category = button.dataset.category;
+                loadMenuItems(category);
+            });
+        });
+        
+        // Menü öğelerini yükleme fonksiyonu
+        function loadMenuItems(category) {
+            menuItemsContainer.innerHTML = '';
+            
+            menuItems[category].forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="menu-item-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.price}</p>
+                        <p class="description">${item.description}</p>
+                    </div>
+                `;
+                
+                // Tıklama eventi - ürünü sipariş formuna ekler
+                menuItem.addEventListener('click', () => {
+                    document.getElementById('kategori').value = category.slice(0, -1); // 'yemekler' -> 'yemek'
+                    document.getElementById('kategori').dispatchEvent(new Event('change'));
+                    
+                    // Ürün dropdown'ında ilgili ürünü seç
+                    setTimeout(() => {
+                        document.getElementById('urun').value = item.id;
+                        document.getElementById('adet').focus();
+                    }, 100);
+                });
+                
+                menuItemsContainer.appendChild(menuItem);
+            });
+        }
+    </script>
+</body>
+</html>
