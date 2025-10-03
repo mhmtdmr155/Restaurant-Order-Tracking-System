@@ -1,3 +1,6 @@
+developed by Mehmet Demir and Elif Onat
+
+
 # Restaurant Order Tracking System
 # Restoran Sipariş Takip Sistemi
 
